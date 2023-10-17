@@ -1,4 +1,5 @@
 class SoftwaresController < ApplicationController
+
   before_action :set_software, only: %i[ show edit update destroy ]
 
   # GET /softwares or /softwares.json
@@ -65,6 +66,6 @@ class SoftwaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def software_params
-      params.require(:software).permit(:name, :license_count)
+      params.require(:software).permit(:name, :license_count, :employee_ids => [])
     end
 end

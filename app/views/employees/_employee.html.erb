@@ -14,7 +14,13 @@
           <% end %>
         </ul>
       </p>
-
+      
+      <p>
+      <strong>Assigned Software:</strong>
+          <% employee.softwares.each do |software| %>
+            <li> <%= software.name %>
+          <%end%>
+      </p>
     </div>                                                                  
   </div>
 </div>

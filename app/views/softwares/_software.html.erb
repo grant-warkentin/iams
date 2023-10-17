@@ -9,4 +9,12 @@
     <%= software.license_count %>
   </p>
 
+  <p>
+  <strong>Assigned Employees:</strong>
+  <ul>
+    <% software.employees.each do |employee| %>
+      <li> <%= employee.first_name %>
+    <%end%>
+  </ul>
+  </p>
 </div>

@@ -10,18 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_16_093115) do
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.1].define(version: 2023_10_17_060355) do
   create_table "devices", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id"
+    t.string "manufacturer"
+    t.string "category"
     t.index ["employee_id"], name: "index_devices_on_employee_id"
   end
 
@@ -35,13 +31,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_16_093115) do
   create_table "employees_softwares", id: false, force: :cascade do |t|
     t.integer "employee_id", null: false
     t.integer "software_id", null: false
-  end
-
-  create_table "manufacturers", force: :cascade do |t|
-    t.string "name"
-    t.string "website"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "softwares", force: :cascade do |t|
