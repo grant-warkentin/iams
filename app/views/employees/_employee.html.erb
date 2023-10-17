@@ -1,0 +1,20 @@
+<div class="card my-3 p-3">
+  <div class="card-body">
+    <div id="<%= dom_id employee %>">
+      <p>
+        <strong>Full Name:</strong>
+        <%= employee.first_name + " " + employee.last_name %>
+      </p>
+
+      <p>
+      <strong>Assigned Devices:</strong>
+        <ul>
+          <% employee.devices.each do |device| %>
+            <li><%=device.name%></li>
+          <% end %>
+        </ul>
+      </p>
+
+    </div>                                                                  
+  </div>
+</div>
