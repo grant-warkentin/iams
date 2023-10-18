@@ -1,4 +1,5 @@
 <h1>Dashboard</h1>
+
 <h2 class="mt-5">Device Usage</h2>
 <table class="table table-striped table-bordered">
   <thead>
@@ -11,57 +12,36 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td>Desktop</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>Desktop</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>Desktop</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
+    <% @unique_categories.each do |device| %>
+      <tr>
+        <td><%= device.category %></td>
+        <td><%= @count=Device.where(category: device.category).count %></td>
+        <td><%= @assigned=Employee.joins(:devices).where(devices: { category: device.category}).count %></td>
+        <td><%= @count - @assigned %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
 
 <h2 class="mt-5">Software Compliance</h2>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Total</th>
-      <th>Assigned</th>
-      <th>Available</th>
+      <th>License Count</th>
+      <th>Employee Count</th>
+      <th>Compliant?</th>
     </tr>
   </thead>
-
   <tbody>
-    <tr>
-      <td>Desktop</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>Desktop</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>Desktop</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
+    <% @unique_softwares.each do |software| %>
+      <tr>
+        <td><%= software.name %></td>
+        <td><%= @licenseCount=software.license_count%></td>
+        <td><%= @employeeCount = Software.where(name: software.name).joins(:employees).count%></td> 
+        <td><%= (@licenseCount - @employeeCount < 0) ? "False" : "True" %></td>
+      </tr>
+
+    <% end %>
   </tbody>
 </table>
