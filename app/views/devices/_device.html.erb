@@ -1,20 +1,23 @@
-<div id="<%= dom_id device %>">
-  <p>
-    <strong>Name:</strong>
-    <%= device.name %>
-  </p>
+<div class="card my-3 p-3">
+  <div id="<%= dom_id device %>">
+    <p>
+      <strong>Name:</strong>
+      <%= device.name %>
+    </p>
 
-  <p>
-    <strong>Manufacturer:</strong>
-  </p>
+    <p>
+      <strong>Manufacturer:</strong>
+      <%= device.manufacturer %>
+    </p>
 
-  <p>
-    <strong>Category:</strong>
-  </p>
+    <p>
+      <strong>Category:</strong>
+      <%= device.category %>
+    </p>
 
-  <p>
-    <strong>Assigned To:</strong>
-    <%= device.employee.first_name + " " + device.employee.last_name%>
-  </p>
-
+    <p>
+      <strong>Assigned To:</strong>
+      <%= device.employee.first_name + " " + device.employee.last_name%>
+    </p>
+  </div>
 </div>

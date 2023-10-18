@@ -1,25 +1,17 @@
 class DevicesController < ApplicationController
-  before_action :set_device, only: %i[ show edit update destroy ]
+  before_action :set_device, only: %i[show edit update destroy]
 
-  # GET /devices or /devices.json
   def index
     @devices = Device.all
   end
 
-  # GET /devices/1 or /devices/1.json
   def show
   end
 
-  # GET /devices/new
   def new
     @device = Device.new
   end
 
-  # GET /devices/1/edit
-  def edit
-  end
-
-  # POST /devices or /devices.json
   def create
     @device = Device.new(device_params)
 
@@ -34,7 +26,9 @@ class DevicesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /devices/1 or /devices/1.json
+  def edit
+  end
+
   def update
     respond_to do |format|
       if @device.update(device_params)
@@ -47,7 +41,6 @@ class DevicesController < ApplicationController
     end
   end
 
-  # DELETE /devices/1 or /devices/1.json
   def destroy
     @device.destroy!
 
@@ -58,13 +51,12 @@ class DevicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_device
-      @device = Device.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def device_params
-      params.require(:device).permit(:name, :employee_id)
-    end
+  def set_device
+    @device = Device.find(params[:id])
+  end
+
+  def device_params
+    params.require(:device).permit(:name, :employee_id, :manufacturer, :category, :website)
+  end
 end

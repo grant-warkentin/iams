@@ -4,11 +4,6 @@
 
 <div id="manufacturers">
   <% @manufacturers.each do |manufacturer| %>
-    <%= render manufacturer %>
-    <p>
-      <%= link_to "Show this manufacturer", manufacturer %>
-    </p>
+    <%= render partial: "manufacturer", locals: { manufacturer: manufacturer } %>
   <% end %>
 </div>
-
-<%= link_to "New manufacturer", new_manufacturer_path %>
