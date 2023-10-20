@@ -17,7 +17,9 @@
 
     <p>
       <strong>Assigned To:</strong>
-      <%= device.employee.first_name + " " + device.employee.last_name%>
+      <% @employee_name= device.employee.full_name%>
+      <% @employee_id= Employee.where(first_name: device.employee.first_name, last_name: device.employee.last_name).pluck(:id) %>
+      <a href= "<%=employee_path(@employee_id)%>"><%=@employee_name%></a>
     </p>
   </div>
 </div>

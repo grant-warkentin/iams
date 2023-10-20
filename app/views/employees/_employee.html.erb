@@ -11,24 +11,31 @@
 
       <p>
         <strong>Full Name:</strong>
-        <%= employee.first_name + " " + employee.last_name %>
+        <%= employee.full_name %>
       </p>
 
       <p>
       <strong>Assigned Devices:</strong>
         <ul>
           <% employee.devices.each do |device| %>
-            <li><%=device.name%></li>
+            <% @device_name= device.name %>
+            <% @device_id= Device.where(Name: @device_name).pluck(:id).first %>
+            <li><a href="<%=device_path(@device_id)%>"><%=@device_name%></a></li>
           <% end %>
         </ul>
       </p>
       
       <p>
       <strong>Assigned Software:</strong>
+        <ul>
           <% employee.softwares.each do |software| %>
-            <li> <%= software.name %>
+            <% @software_name= software.name %>
+            <% @software_id= Software.where(Name: @software_name).pluck(:id).first %>
+            <li><a href="<%=software_path(@software_id)%>"><%=@software_name%></a></li>
           <%end%>
+        </ul>
       </p>
+      <%= link_to "Show this employee", employee %>
     </div>                                                                  
   </div>
 </div>

@@ -14,7 +14,7 @@
     <strong>Assigned Employees:</strong>
     <ul>
       <% software.employees.each do |employee| %>
-        <li> <%= employee.first_name %>
+        <li> <a href="<%= employee_path(employee.id) %>"><%=employee.full_name%></a>
       <%end%>
     </ul>
     </p>
