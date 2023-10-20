@@ -17,3 +17,6 @@
 fieldset legend {
   float: none;
 }
+
+@include color-mode(dark){
+}
