@@ -21,15 +21,20 @@ class ManufacturersController < ApplicationController
 
   # POST /manufacturers or /manufacturers.json
   def create
-    @manufacturer = Manufacturer.new(manufacturer_params)
+    begin
+      @manufacturer = Manufacturer.new(manufacturer_params)
 
-    respond_to do |format|
-      if @manufacturer.save
-        format.html { redirect_to manufacturer_url(@manufacturer), notice: "Manufacturer was successfully created." }
-        format.json { render :show, status: :created, location: @manufacturer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @manufacturer.save
+          format.html { redirect_to manufacturer_url(@manufacturer), notice: "Manufacturer was successfully created." }
+          format.json { render :show, status: :created, location: @manufacturer }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
+        end
+    rescue ActiveRecord::RecordNotUnique
+      format.html { redirect_to manufacturers_url(show),notice: "Manufacturer and/or Website is already in the database."}
+      format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,7 +47,7 @@ class ManufacturersController < ApplicationController
           format.html { redirect_to manufacturer_url(@manufacturer), notice: "Manufacturer was successfully updated." }
           format.json { render :show, status: :ok, location: @manufacturer }
 
-        else #abnormal condition
+        else
           format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
         end
