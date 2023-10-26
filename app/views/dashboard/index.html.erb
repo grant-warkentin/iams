@@ -12,12 +12,12 @@
   </thead>
 
   <tbody>
-    <% @unique_categories.each do |device| %>
+    <% @devices.each do |device| %>
       <tr>
-        <td><%= device.category %></td>
-        <td><%= @count=Device.where(category: device.category).count %></td>
-        <td><%= @assigned=Employee.joins(:devices).where(devices: { category: device.category}).count %></td>
-        <td><%= @count - @assigned %></td>
+        <td><%= device %></td>
+        <td><%= device %></td>
+        <td><%= device %></td>
+        <td><%= device %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,12 +34,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @unique_softwares.each do |software| %>
+    <% @devices.each do |software| %>
       <tr>
         <td><%= software.name %></td>
-        <td><%= @licenseCount=software.license_count%></td>
-        <td><%= @employeeCount = Software.where(name: software.name).joins(:employees).count%></td> 
-        <td><%= (@licenseCount - @employeeCount < 0) ? "False" : "True" %></td>
       </tr>
 
     <% end %>

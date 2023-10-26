@@ -2,6 +2,8 @@
 
 one:
   name: MyString
+  website: MyString
 
 two:
   name: MyString
+  website: MyString
