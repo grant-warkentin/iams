@@ -7,10 +7,14 @@
 
     <p>
       <strong>Manufacturer:</strong>
+      <%@manufacturer=Manufacturer.find(device.manufacturer_id)%>
+      <%=@manufacturer.name%>
     </p>
 
     <p>
       <strong>Category:</strong>
+      <%@category=Category.find(device.category_id)%>
+      <%=@category.name%>
     </p>
 
     <p>

@@ -4,9 +4,8 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :manufacturer, required: true %>
-    <%= f.input :category, required: true %>
-    <%= f.input :website, required: true %>
+    <%= f.association :manufacturer, label_method: :name, required: true %>
+    <%= f.association :category, lable_method: :name, required: true %>
     <%= f.association :employee, label_method: :full_name %>
   </div>
 

@@ -14,8 +14,8 @@
   <tbody>
     <% @devices.each do |device| %>
       <tr>
-        <td><%= device %></td>
-        <td><%= device %></td>
+        <td><%= device.name %></td>
+        <td><%= Device.where(Name: device.name).count %></td>
         <td><%= device %></td>
         <td><%= device %></td>
       </tr>

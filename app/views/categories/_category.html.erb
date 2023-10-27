@@ -1,12 +1,7 @@
-<div id="<%= dom_id category %>">
+<div id="<%= dom_id category %>", class="card my-3 p-3">
   <p>
     <strong>Name:</strong>
-    <%= category.name %>
+    <%= category.name %> 
   </p>
-
-  <p>
-    <strong>Website:</strong>
-    <%= category.website %>
-  </p>
-
+  <%= link_to "Show this category", category %>
 </div>
