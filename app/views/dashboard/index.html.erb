@@ -12,12 +12,12 @@
   </thead>
 
   <tbody>
-    <% @devices.each do |device| %>
+    <% @category.each do |c| %>
       <tr>
-        <td><%= device.name %></td>
-        <td><%= Device.where(Name: device.name).count %></td>
-        <td><%= device %></td>
-        <td><%= device %></td>
+        <td><%= c.name %></td>
+        <td><%=@total=Device.where(category_id: c.id).count %></td> <!--Same as c.devices.count-->
+        <td><%=@taken=Device.where.not(employee_id: nil).where(category_id: c.id).count%></td> <!--Question to ask: How many devices have a foreign key for employees that also have the current category id? I initially had where.(employee_id: present?) however this didn't work as expected and I am not exactly sure why.-->
+        <td><%=@total-@taken%></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,9 +34,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @devices.each do |software| %>
+    <% @software.each do |s| %>
       <tr>
-        <td><%= software.name %></td>
+        <td><%= s.name %></td>
+        <td><%=@total_licenses=s.license_count%></td>
+        <td><%=@employee_usage=s.employees.count=%></td>
+        <td><%=(@total_licenses-@employee_usage) >= 0? 'True' : 'False' %></td>
       </tr>
 
     <% end %>
