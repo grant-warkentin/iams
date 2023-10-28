@@ -4,7 +4,10 @@
 
 <div id="categories">
   <% @categories.each do |category| %>
-    <%= render category %>
+    <div class="card my-3 p-3">
+      <%= render category %>
+      <%= link_to "Show this category", category %>
+    </div>
   <% end %>
 </div>
 

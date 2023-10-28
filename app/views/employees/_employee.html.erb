@@ -1,41 +1,36 @@
-<div class="card my-3 p-3">
-  <div class="card-body">
-    <div id="<%= dom_id employee %>">     
-      <p>
-        <% if employee.profile_picture.present? %>
-          <%= image_tag employee.profile_picture.variant(:thumb)%>
-        <%else%>
-          <p1>No Profile Picture</p1>
-        <%end%>
-      </p>
+<div id="<%= dom_id employee %>">     
+  <p>
+  <% if employee.profile_picture.present? %>
+    <%= image_tag employee.profile_picture.variant(:thumb)%>
+  <%else%>
+    <p1>No Profile Picture</p1>
+  <%end%>
+  </p>
 
-      <p>
-        <strong>Full Name:</strong>
-        <%= employee.full_name %>
-      </p>
+  <p>
+  <strong>Full Name:</strong>
+  <%= employee.full_name %>
+  </p>
 
-      <p>
-      <strong>Assigned Devices:</strong>
-        <ul>
-          <% employee.devices.each do |device| %>
-            <% @device_name= device.name %>
-            <% @device_id= Device.where(Name: @device_name).pluck(:id).first %>
-            <li><a href="<%=device_path(@device_id)%>"><%=@device_name%></a></li>
-          <% end %>
-        </ul>
-      </p>
-      
-      <p>
-      <strong>Assigned Software:</strong>
-        <ul>
-          <% employee.softwares.each do |software| %>
-            <% @software_name= software.name %>
-            <% @software_id= Software.where(Name: @software_name).pluck(:id).first %>
-            <li><a href="<%=software_path(@software_id)%>"><%=@software_name%></a></li>
-          <%end%>
-        </ul>
-      </p>
-      <%= link_to "Show this employee", employee %>
-    </div>                                                                  
-  </div>
-</div>
+  <p>
+  <strong>Assigned Devices:</strong>
+  <ul>
+    <% employee.devices.each do |device| %>
+      <% @device_name= device.name %>
+      <% @device_id= Device.where(Name: @device_name).pluck(:id).first %>
+      <li><a href="<%=device_path(@device_id)%>"><%=@device_name%></a></li>
+    <% end %>
+  </ul>
+  </p>
+
+  <p>
+  <strong>Assigned Software:</strong>
+  <ul>
+    <% employee.softwares.each do |software| %>
+      <% @software_name= software.name %>
+      <% @software_id= Software.where(Name: @software_name).pluck(:id).first %>
+      <li><a href="<%=software_path(@software_id)%>"><%=@software_name%></a></li>
+    <%end%>
+  </ul>
+  </p>
+</div>                                                                  
