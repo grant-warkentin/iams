@@ -14,7 +14,8 @@
   <ul>
     <% software.employees.each do |employee| %>
       <li> <a href="<%= employee_path(employee.id) %>"><%=employee.full_name%></a>
-      <%end%>
+    <%end%>
+
   </ul>
   </p>
 </div>
