@@ -1,0 +1,30 @@
+<h1>Search Devices</h1>
+
+<%= form_with url: "/search", method: :get do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <br><%= form.text_field :query, :value => @query %>
+
+  <br><%= form.label :category_id, "Filter by Category:" %>
+  <br><%= form.select :category_id, Category.all.map{|s| [s.name, s.id]}, selected: @category_id, include_blank: true%>
+
+  <br><%= form.label :manufacturer_id, "Filter by Manufacturer:" %>
+  <br><%= form.select :manufacturer_id, Manufacturer.all.map{|s| [s.name, s.id]}, selected: @manufacturer_id, include_blank: true%>
+
+  <br><%= form.submit "Search" %>
+<% end %>
+
+
+<% if @query.present? %>
+  <h4>Results</h4>
+  <% if @devices.present? %>
+    <ul>
+      <% @devices.each do |d| %> 
+        <li><a href="/devices/<%=d.id%>"><%=d.name%> (<%=d.manufacturer.name%>/<%=d.category.name%>)</a></li>
+      <%end%>
+    </ul>  
+  <% else %>
+    <p>Your search didn't match any devices!</p>
+  <%end%>
+<%else%>
+  <p>Ready to search!</p>
+<%end%>

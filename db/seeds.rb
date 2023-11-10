@@ -24,34 +24,42 @@ Manufacturer.create([
   #Create employee
   employee_instance = Employee.create({:first_name => "employee", :last_name => "#{n}"})
 
-  #Create device and employee association
-  Device.create({:name =>  Category.first.name + " #{employee_instance.id}",
-                 :manufacturer => Manufacturer.first,
-                 :category => Category.first,
-                 :employee => employee_instance
-  })
-
-  #Create another device and employee association
-  Device.create({:name =>  Category.second.name + " #{employee_instance.id}",
-                 :manufacturer => Manufacturer.second,
-                 :category => Category.second,
-                 :employee => employee_instance
-  })
-
   #Create Software
-  Software.create({
-    :name => "Software #{n+1}",
-    :license_count => rand(1..5)
-  })
-
+  Software.create({:name => "Software #{n+1}",
+                   :license_count => rand(1..5)
+    })
 end
 
-#Assign random software package to each employee
-3.times do |n|
-  5.times do |r|
+#Assign 3 random software packages to each employee
+Employee.count.times do |r|
+  3.times do |n|
     Software.find(rand(1..5)).employees << Employee.find(r+1)
   end
 end
 
+#Create 3 Devices for each Category for each Manufacturer
+Manufacturer.count.times do |n|
+  Category.count.times do |r|
+    3.times do |p|
+      #check to see if random device already exists
+      device_name = "Device #{rand(1..100)}"
+      while Device.where(name: device_name).exists?
+        device_name = "Device #{rand(1..100)}"
+      end
 
+      Device.create({:name =>  device_name,
+                     :manufacturer => Manufacturer.find(n+1),
+                     :category => Category.find(r+1)
+      })
+    end
+  end
+end
 
+#Assign 3 unassigned devices to each employee
+pointer = 0
+Employee.count.times do |n| 
+  3.times do |r|
+    pointer += 1
+    Device.where(id: pointer).update({:employee => Employee.find(n+1)})
+  end
+end
