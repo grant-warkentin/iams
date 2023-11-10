@@ -1,16 +1,29 @@
 <h1>Search Devices</h1>
 
 <%= form_with url: "/search", method: :get do |form| %>
-  <%= form.label :query, "Search for:" %>
-  <br><%= form.text_field :query, :value => @query %>
+  <div>
+    <%= form.label :query, "Search for:", class: "form-label" %>
+    <%= form.text_field :query, :value => @query, class: "form-control" %>
+  </div>
 
-  <br><%= form.label :category_id, "Filter by Category:" %>
-  <br><%= form.select :category_id, Category.all.map{|s| [s.name, s.id]}, selected: @category_id, include_blank: true%>
+  <div>
+    <%= form.label :category_id, "Filter by Category:", class: "form-label" %>
+    <%= form.select :category_id, Category.all.map{|s| [s.name, s.id]}, 
+      {selected: @category_id, include_blank: true}, 
+      {class: "form-select"}%>
+  </div>
+  
+  <div>
+    <%= form.label :manufacturer_id, "Filter by Manufacturer:", class: "form-lable" %>
+    <%= form.select :manufacturer_id, Manufacturer.all.map{|s| [s.name, s.id]}, 
+      {selected: @manufacturer_id, include_blank: true},
+      {class: "form-select"}%>
+  </div>
 
-  <br><%= form.label :manufacturer_id, "Filter by Manufacturer:" %>
-  <br><%= form.select :manufacturer_id, Manufacturer.all.map{|s| [s.name, s.id]}, selected: @manufacturer_id, include_blank: true%>
+  <div>
+    <%= form.submit "Search", class: "btn btn-outline-primary" %>
+  </div>
 
-  <br><%= form.submit "Search" %>
 <% end %>
 
 
