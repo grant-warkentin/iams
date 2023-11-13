@@ -20,3 +20,8 @@ fieldset legend {
 
 @include color-mode(dark){
 }
+
+#navbarNav {
+  display: flex;
+  justify-content: space-between;
+}

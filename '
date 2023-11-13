@@ -16,7 +16,7 @@
   <div>
     <%= form.label :manufacturer_id, "Filter by Manufacturer:", class: "form-lable" %>
     <%= form.select :manufacturer_id, Manufacturer.all.map{|s| [s.name, s.id]}, 
-      {selected: params[:manufacturer_id], include_blank: true},
+      {selected: @manufacturer_id, include_blank: true},
       {class: "form-select"}%>
   </div>
 
@@ -27,7 +27,7 @@
 <% end %>
 
 
-<% if params[:query].present? || params[:category_id].present? || params[:manufacturer_id].present? %>
+<% if @query.present? %>
   <h4>Results</h4>
   <% if @devices.present? %>
     <ul>
